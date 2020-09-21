@@ -1,3 +1,9 @@
+
 <div class="text-center">
-  <h1><%= @user.name %>:のブログ一覧</h1>
+  <h1 class="itiran"><%= @user.name %>:のブログ一覧</h1>
 </div>
+<div class="col-sm-8">
+  <%= render 'blogs/blogs', blogs: @blogs %>
+</div>
+
+

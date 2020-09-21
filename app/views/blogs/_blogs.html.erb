@@ -1,0 +1,57 @@
+<ul class="list-unstyled">     
+  <% blogs.each do |blog| %>
+  <li>
+    <div class="flame">
+    <div class="top">
+      <ul class="list-unstyled">
+        <li class="Uname">
+          User:<%=blog.user.name %>
+        </li>  
+        <li class="form-group1 row">
+          <label class="col-7 col-form-label">都道府県：</label>
+          <div class="col-6">
+            <%= blog.prefecture.name %>
+          </div>
+        </li>
+        <li class="form-group2 row">
+          <label class="col-8 col-form-label">観光地名：</label>
+          <div class="col-12">
+            <%= blog.spot_name %>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="images">
+      <div class="image">
+        <%= image_tag "#{blog.image1}", :size =>'375x160'%>
+      </div>  
+      <div class="image">
+        <%= image_tag "#{blog.image2}", :size =>'375x160'%>
+      </div>
+    </div>
+    <div class="Caddress text-center">
+      所在地：
+      <%= blog.address %>
+    </div>
+    <div class="Ccontent">
+      <%= blog.content %>
+    </div>
+    <div class="text-center button">
+      <div class="DELETE">
+        <% if current_user == blog.user %>
+          <%= link_to "削除", blog, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
+        <% end %>
+      </div>
+      <div class="EDIT">
+        <% if current_user == blog.user %>
+          <%= link_to "編集", edit_blog_path(blog) ,class: 'btn btn-primary btn-sm' %>
+        <% end %>
+      </div>
+    </div>
+    <div class="button">
+    <%= render 'favorites/like_button', blog: blog  %>
+    </div>
+    </div>
+  </li>
+  <% end %>
+</ul>

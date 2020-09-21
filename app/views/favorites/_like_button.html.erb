@@ -1,0 +1,13 @@
+<% if logged_in? %>  
+  <% if current_user.likes?(blog) %>
+    <%= form_with(model: current_user.favorites.find_by(blog_id: blog.id), local: true, method: :delete) do |f| %>
+      <%= hidden_field_tag :blog_id, blog.id %>
+      <%= f.submit 'お気に入り削除', class: 'btn btn-danger btn-sm' %>
+    <% end %>
+  <% else %>
+    <%= form_with(model: current_user.favorites.build, local: true) do |f| %>
+      <%= hidden_field_tag :blog_id, blog.id %>
+      <%= f.submit 'お気に入り追加', class: 'btn btn-primary btn-sm' %>
+    <% end %>
+  <% end %>
+<% end %>  
